@@ -7,22 +7,21 @@ Deque::Deque():
         count(0) 
 {};
 //Copy constructor
-Deque::Deque(const Deque &deq): 
-        front(deq.front), 
-        back(deq.back),
-        count(deq.count)
-{};
+Deque::Deque(const Deque &deq)
+{
+    deepCopy(deq);
+}
 
 Deque::~Deque()
 {
-    
+    deleteDeque();
 }
 //Overloaded assignment operator
 Deque& Deque::operator=(const Deque &deq)
 {
     if(this != &deq){
-        front = deq.front;
-        back = deq.back;
+        deleteDeque();
+        deepCopy(deq);
     }
     return *this;
 }
@@ -148,11 +147,54 @@ bool Deque::empty()
 //POST: Returns the 'count' member attribute of the Deque class.
 int Deque::size()
 {
-    //Doesn't work when remove_back method is used...
+    //Doesn't work for removal methods
     return count;
 }
+//Removes all the items from the Deque and
+//deallocates dynamic memory associated with nodes
+//PARAM: 
+//PRE:
+//POST: Deque is empty
+/*Code taken from John Edgar's LinkedList implementation*/
+void Deque::deleteDeque()
+{
+    Node* temp = front;
+    // Traverse list
+    while(temp != NULL){
+        temp = front->next;	    
+        delete front;	
+	front = temp;	
+    }	     
+    front = NULL;
+}
 
-//Testing functions for Deque class
+// Makes a deep copy of a list
+// PARAM: deq is the list to copied
+// PRE: Calling object is empty
+// POST: List contents are identical to deq
+void Deque::deepCopy(const Deque & deq)
+{
+	front = NULL;
+	
+	// Only copy if ls is non-empty
+	if(deq.front != NULL){
+		Node* original = deq.front;
+		Node* copy;
+		// Copy the front
+		copy = new Node(original->data, NULL);
+		front = copy;
+		original = original->next;
+
+		// Traverse the original copying each node
+		while(original != NULL){
+			copy->next = new Node(original->data, NULL);
+			copy = copy->next;
+			original = original->next;
+		}
+	}
+}
+
+//Testing function for Deque class
 void Deque::testPrint()
 {
     Node* temp = front;
@@ -161,3 +203,4 @@ void Deque::testPrint()
         temp = temp->next;
     }
 }
+

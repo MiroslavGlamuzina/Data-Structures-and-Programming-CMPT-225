@@ -42,8 +42,9 @@ public:
     int peek_back();   
     bool empty();
     int size();
-    //Might put this in later
+    //Might put these in later
     void deepCopy(const Deque &deq);
+    void deleteDeque();
     
     //Test functions
     void testPrint();
