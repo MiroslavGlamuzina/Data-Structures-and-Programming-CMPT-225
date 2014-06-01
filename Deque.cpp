@@ -1,23 +1,28 @@
-#include "Deque.h"
+#ifdef _DEQUE_
 
 //Constructor
-Deque::Deque(): 
+template <class T>
+Deque<T>::Deque(): 
         front(NULL), 
         back(NULL), 
         count(0) 
 {};
 //Copy constructor
-Deque::Deque(const Deque &deq)
+template <class T>
+Deque<T>::Deque(const Deque &deq)
 {
     deepCopy(deq);
 }
-
-Deque::~Deque()
+//Destructor
+template <class T>
+Deque<T>::~Deque()
 {
     deleteDeque();
 }
-//Overloaded assignment operator
-Deque& Deque::operator=(const Deque &deq)
+//Overloaded assignment operator.
+//Not sure how templates will work with this.
+template <class T>
+Deque<T>& Deque<T>::operator=(const Deque<T> &deq)
 {
     if(this != &deq){
         deleteDeque();
@@ -30,9 +35,10 @@ Deque& Deque::operator=(const Deque &deq)
 //PRE: deque must not be empty.
 //POST: item is inserted at the front of the deque, count attribute is 
 //      incremented.
-void Deque::insert_front(int item)
+template <class T>
+void Deque<T>::insert_front(T item)
 {
-    Node* temp = new Node(item);
+    Node<T>* temp = new Node<T>(item);
     if(empty()){
         front = back = temp;
     }
@@ -48,9 +54,10 @@ void Deque::insert_front(int item)
 //PRE: deque must not be empty.
 //POST: item is inserted at the back of the deque, count attribute is 
 //      incremented.
-void Deque::insert_back(int item)
+template <class T>
+void Deque<T>::insert_back(T item)
 {
-    Node *temp = new Node(item);
+    Node<T> *temp = new Node<T>(item);
     if(empty()){
         back = front = temp;
     }
@@ -65,9 +72,10 @@ void Deque::insert_back(int item)
 //PRE: deque most not be empty.
 //POST: returns and removes result, which is the data element at the front of 
 //      the deque. Decrements count attribute.
-int Deque::remove_front()
+template <class T>
+T Deque<T>::remove_front()
 {
-    int result = front->data;
+    T result = front->data;
     if(empty()){
         throw std::runtime_error(errorMsg);
     }
@@ -81,20 +89,21 @@ int Deque::remove_front()
 //PRE: deque must not be empty.
 //POST: returns and removes result, which is the data element at the back of 
 //      the deque. Decrements count attribute. Operates in O(n) time.
-int Deque::remove_back()
+template <class T>
+T Deque<T>::remove_back()
 {
     //Add comments to explain what's happening here.
-    int result = back->data;
+    T result = back->data;
     if(empty()){
         throw std::runtime_error(errorMsg);
     }
     else {
-        Node *tempBack = back;
+        Node<T> *tempBack = back;
         if(front == back){
             front = NULL;
         }
         else {
-            Node *temp = front;
+            Node<T> *temp = front;
             while(temp->next != back){
                 temp = temp->next;
             }
@@ -111,12 +120,13 @@ int Deque::remove_back()
 //PARAM:
 //PRE:
 //POST: return front->data.
-int Deque::peek_front()
+template <class T>
+T Deque<T>::peek_front()
 {
     if(empty()){
         throw std::runtime_error(errorMsg);
     }
-    int result = front->data;
+    T result = front->data;
     return result;
 }
 
@@ -124,19 +134,21 @@ int Deque::peek_front()
 //PARAM:
 //PRE:
 //POST: returns back->data. 
-int Deque::peek_back()
+template <class T>
+T Deque<T>::peek_back()
 {
     if(empty()){
         throw std::runtime_error(errorMsg);
     }
-    int result = back->data;
+    T result = back->data;
     return result;
 }
 //Checks to see if deque is empty.
 //PARAM:
 //PRE: size() must return an integer value.
 //POST: True if size() == 0, false otherwise.
-bool Deque::empty()
+template <class T>
+bool Deque<T>::empty()
 {
     return size() == 0;
 }
@@ -145,7 +157,8 @@ bool Deque::empty()
 //PARAM:
 //PRE:
 //POST: Returns the 'count' member attribute of the Deque class.
-int Deque::size()
+template <class T>
+int Deque<T>::size()
 {
     //Doesn't work for removal methods
     return count;
@@ -156,9 +169,10 @@ int Deque::size()
 //PRE:
 //POST: Deque is empty
 /*Code taken from John Edgar's LinkedList implementation*/
-void Deque::deleteDeque()
+template <class T>
+void Deque<T>::deleteDeque()
 {
-    Node* temp = front;
+    Node<T>* temp = front;
     // Traverse list
     while(temp != NULL){
         temp = front->next;	    
@@ -172,35 +186,38 @@ void Deque::deleteDeque()
 // PARAM: deq is the list to copied
 // PRE: Calling object is empty
 // POST: List contents are identical to deq
-void Deque::deepCopy(const Deque & deq)
+template <class T>
+void Deque<T>::deepCopy(const Deque & deq)
 {
-	front = NULL;
 	
-	// Only copy if ls is non-empty
-	if(deq.front != NULL){
-		Node* original = deq.front;
-		Node* copy;
-		// Copy the front
-		copy = new Node(original->data, NULL);
-		front = copy;
-		original = original->next;
-
-		// Traverse the original copying each node
-		while(original != NULL){
-			copy->next = new Node(original->data, NULL);
-			copy = copy->next;
-			original = original->next;
-		}
+    front = NULL;		
+    // Only copy if ls is non-empty	
+    if(deq.front != NULL){
+        Node<T>* original = deq.front;
+        Node<T>* copy;
+        // Copy the front
+        copy = new Node<T>(original->data, NULL);
+        front = copy;
+        original = original->next;       
+        // Traverse the original copying each node	
+	while(original != NULL){
+            copy->next = new Node<T>(original->data, NULL);	         
+            copy = copy->next;                                 
+            original = original->next;
 	}
+    }
 }
 
 //Testing function for Deque class
-void Deque::testPrint()
+template <class T>
+void Deque<T>::testPrint()
 {
-    Node* temp = front;
+    Node<T>* temp = front;
     while(temp != NULL){
         std::cout << temp -> data << std::endl;
         temp = temp->next;
     }
 }
+
+#endif //_DEQUE_
 

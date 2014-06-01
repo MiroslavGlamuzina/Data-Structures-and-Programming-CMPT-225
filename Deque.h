@@ -8,20 +8,22 @@
 #include <string>
 
 //Node class (singly-linked)
+template <class T>
 class Node
 {
 public:
     //Member variables
-    int data;
+    T data;
     Node *next;
     //Copy constructor
     Node(const Node &nodePtr): data(nodePtr.data), next(nodePtr.next) {};
     //Other constructors
-    Node(int item): data(item), next(NULL) {};
-    Node(int item, Node *np): data(item), next(np) {};
+    Node(T item): data(item), next(NULL) {};
+    Node(T item, Node *np): data(item), next(np) {};
 };
 
-//Deque class for int types
+//Deque class for all types
+template<class T>
 class Deque
 {
 public:
@@ -34,13 +36,14 @@ public:
     //Assignment operator overload
     Deque &operator=(const Deque &deq);
     //Member functions
-    void insert_front(int item);   
-    void insert_back(int item);  
-    int remove_front();   
-    int remove_back();    
-    int peek_front();  
-    int peek_back();   
+    void insert_front(T item);   
+    void insert_back(T item);  
+    T remove_front();   
+    T remove_back();    
+    T peek_front();  
+    T peek_back();   
     bool empty();
+    //Size returns an int because size is a number.
     int size();
     //Might put these in later
     void deepCopy(const Deque &deq);
@@ -50,12 +53,14 @@ public:
     void testPrint();
     
 private:
-    Node *front;
-    Node *back;
+    Node<T> *front;
+    Node<T> *back;
     //Added count attribute to track the size of the deque.
     int count;
     const std::string errorMsg = "The deque is empty."; 
 };
 
-#endif	/* DEQUE_H */
+#include "Deque.cpp"
+
+#endif	//_DEQUE_
 
