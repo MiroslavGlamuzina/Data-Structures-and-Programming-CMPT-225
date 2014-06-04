@@ -1,26 +1,37 @@
 #ifdef _DEQUE_
 
 //Constructor
+//PARAM:
+//PRE:
+//POST: New Deque object is created.
 template <class T>
 Deque<T>::Deque(): 
         front(NULL), 
-        back(NULL), 
-        count(0) 
+        back(NULL) 
 {};
 //Copy constructor
+//PARAM: const reference to a Deque object
+//PRE: same as deepCopy()
+//POST: same as deepCopy()
 template <class T>
 Deque<T>::Deque(const Deque &deq)
 {
     deepCopy(deq);
 }
 //Destructor
+//PARAM:
+//PRE:
+//POST: Deque object is destroyed.
 template <class T>
 Deque<T>::~Deque()
 {
     deleteDeque();
 }
 //Overloaded assignment operator.
-//Not sure how templates will work with this.
+//Copies parameter into the calling object if the references are equal.
+//PARAM: const reference to a Deque object
+//PRE: 
+//POST: Returns a dereference this pointer to the calling object.
 template <class T>
 Deque<T>& Deque<T>::operator=(const Deque<T> &deq)
 {
@@ -33,8 +44,7 @@ Deque<T>& Deque<T>::operator=(const Deque<T> &deq)
 //Inserts an element at the front of the deque.
 //PARAM: item = data to be inserted at the front of the deque.
 //PRE: deque must not be empty.
-//POST: item is inserted at the front of the deque, count attribute is 
-//      incremented.
+//POST: item is inserted at the front of the deque.
 template <class T>
 void Deque<T>::insert_front(T item)
 {
@@ -46,14 +56,12 @@ void Deque<T>::insert_front(T item)
         temp->next = front;
         front = temp;
     }
-    count++;
 }
 
 //Inserts an element at the back of the deque.
 //PARAM: item = data to be inserted at the back of the deque.
 //PRE: deque must not be empty.
-//POST: item is inserted at the back of the deque, count attribute is 
-//      incremented.
+//POST: item is inserted at the back of the deque.
 template <class T>
 void Deque<T>::insert_back(T item)
 {
@@ -65,13 +73,12 @@ void Deque<T>::insert_back(T item)
         temp->next = back;
         back = temp;
     }
-    count++;
 }
 //Removes and returns the data element at the front of the deque.
 //PARAM:
 //PRE: deque most not be empty.
 //POST: returns and removes result, which is the data element at the front of 
-//      the deque. Decrements count attribute.
+//      the deque.
 template <class T>
 T Deque<T>::remove_front()
 {
@@ -80,7 +87,6 @@ T Deque<T>::remove_front()
         throw std::runtime_error(errorMsg);
     }
     front = front->next;
-    count--;
     return result;
 }
 
@@ -88,16 +94,16 @@ T Deque<T>::remove_front()
 //PARAM:
 //PRE: deque must not be empty.
 //POST: returns and removes result, which is the data element at the back of 
-//      the deque. Decrements count attribute. Operates in O(n) time.
+//      the deque. Operates in O(n) time.
 template <class T>
 T Deque<T>::remove_back()
 {
-    //Add comments to explain what's happening here.
     T result = back->data;
     if(empty()){
         throw std::runtime_error(errorMsg);
     }
     else {
+        //If front == back, that means that the Deque is empty
         Node<T> *tempBack = back;
         if(front == back){
             front = NULL;
@@ -112,7 +118,6 @@ T Deque<T>::remove_back()
         }
         delete tempBack;
     }
-    count--;
     return result;
 }
 
@@ -143,9 +148,9 @@ T Deque<T>::peek_back()
     T result = back->data;
     return result;
 }
-//Checks to see if deque is empty.
+//Checks to see if the deque is empty.
 //PARAM:
-//PRE: size() must return an integer value.
+//PRE: size() returns an integer value.
 //POST: True if size() == 0, false otherwise.
 template <class T>
 bool Deque<T>::empty()
@@ -156,19 +161,23 @@ bool Deque<T>::empty()
 //Returns the size of the deque.
 //PARAM:
 //PRE:
-//POST: Returns the 'count' member attribute of the Deque class.
+//POST: Increments count until temp == NULL, then returns count.
 template <class T>
 int Deque<T>::size()
 {
-    //Doesn't work for removal methods
+    int count = 0;
+    Node<T>* temp = front;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
     return count;
 }
-//Removes all the items from the Deque and
-//deallocates dynamic memory associated with nodes
+//Removes all the items from the Deque and deallocates dynamic memory 
+//associated with nodes
 //PARAM: 
 //PRE:
 //POST: Deque is empty
-/*Code taken from John Edgar's LinkedList implementation*/
 template <class T>
 void Deque<T>::deleteDeque()
 {
@@ -182,10 +191,10 @@ void Deque<T>::deleteDeque()
     front = NULL;
 }
 
-// Makes a deep copy of a list
-// PARAM: deq is the list to copied
+// Makes a deep copy of a Deque object
+// PARAM: deq is the deque to copied
 // PRE: Calling object is empty
-// POST: List contents are identical to deq
+// POST: Deque contents are identical to deq
 template <class T>
 void Deque<T>::deepCopy(const Deque & deq)
 {
@@ -207,17 +216,5 @@ void Deque<T>::deepCopy(const Deque & deq)
 	}
     }
 }
-
-//Testing function for Deque class
-template <class T>
-void Deque<T>::testPrint()
-{
-    Node<T>* temp = front;
-    while(temp != NULL){
-        std::cout << temp -> data << std::endl;
-        temp = temp->next;
-    }
-}
-
 #endif //_DEQUE_
 

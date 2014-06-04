@@ -45,18 +45,13 @@ public:
     bool empty();
     //Size returns an int because size is a number.
     int size();
-    //Might put these in later
     void deepCopy(const Deque &deq);
     void deleteDeque();
-    
-    //Test functions
-    void testPrint();
     
 private:
     Node<T> *front;
     Node<T> *back;
-    //Added count attribute to track the size of the deque.
-    int count;
+    //Const private member variable because global variables are bad.
     const std::string errorMsg = "The deque is empty."; 
 };
 
