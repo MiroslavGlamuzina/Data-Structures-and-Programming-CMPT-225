@@ -6,11 +6,10 @@ for experimental and analytical evaluation. Topics include: stacks, queues and l
 hash tables and algorithms; efficient sorting; object-oriented programming; 
 time and space efficiency analysis; and experimental evaluation. </p>
 
-<h3>what it covers</h3>
+<h2><h6>What it covers. . .</h2></h6>
 <ul>
 <li>Introduction to Datastructures and programming</li>
 <li>Dynamic arrays in C++</li>
 <li>Class implemantation</li>
 <li>Simple Deque implementation</li>
-
 <ul>
