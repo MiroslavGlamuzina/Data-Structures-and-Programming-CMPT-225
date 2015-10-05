@@ -1,0 +1,12 @@
+#include "stdio.h"
+#include "iostream"
+#include <stdexcept>
+
+using namespace std;
+
+int main() {
+	Node<int> *front;
+
+	std::cout << "test" << std::endl;
+	return 0;
+}

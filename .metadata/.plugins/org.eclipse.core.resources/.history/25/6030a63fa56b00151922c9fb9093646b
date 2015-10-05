@@ -1,0 +1,52 @@
+#include <string>
+#include <iostream>
+#ifndef _NODE_
+#define _NODE_
+class Node {
+private:
+	struct node {
+		int data;
+		node* next;
+	};
+	node* head;
+	node* curr;
+	node* temp;
+
+public:
+	Node();
+	void AddNode(int data);
+	void deleteNode(int index);
+};
+
+
+#endif /* NODE */
+
+#ifndef _DEQUE_
+
+
+
+#define _DEQUE_
+class Deque {
+
+public:
+	Deque();
+	Deque(const Deque &deq);
+	~Deque();
+	Deque &operator=(const Deque &deq);
+	void insert_front(int item);
+	void insert_back(int item);
+	int remove_front();
+	int remove_back();
+	int peek_front() const;
+	int peek_back() const;
+	bool empty() const;
+	int size() const;
+
+	//helper methods -- remove
+	void deepCopy(const Deque &deq);
+	void deleteDeque();
+
+private:
+
+};
+#endif /* DEQUE */

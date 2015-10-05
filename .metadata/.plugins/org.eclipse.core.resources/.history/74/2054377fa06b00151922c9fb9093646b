@@ -1,0 +1,21 @@
+template<class T>
+class Node {
+public:
+	//Member variables
+	T data;
+	Node *next;
+	//Copy constructor
+	Node(const Node &nodePtr) :
+			data(nodePtr.data), next(nodePtr.next) {
+	}
+	;
+	//Other constructors
+	Node(T item) :
+			data(item), next(NULL) {
+	}
+	;
+	Node(T item, Node *np) :
+			data(item), next(np) {
+	}
+	;
+};

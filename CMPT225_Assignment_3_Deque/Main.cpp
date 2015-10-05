@@ -1,5 +1,6 @@
 #include "stdio.h"
 #include "iostream"
+#include "Deque.h"
 
 int main() {
 
@@ -7,6 +8,45 @@ int main() {
 	std::cout << "test" << std::endl;
 	std::cout << "test" << std::endl;
 
+	Node n ;
+	n.AddNode(3);
+	n.AddNode(3);
+	n.AddNode(1);
+	n.AddNode(2);
+	n.AddNode(4);
+	n.AddNode(1);
 
+	n.printList();
+
+	n.deleteNode(3);
+	n.deleteNode(1);
+	n.deleteNode(4);
+	n.deleteNode(4);
+
+	n.printList();
+
+//	Deque dq1;
+//	      cout << dq1.empty() << " - 1" << endl;
+//
+//	      dq1.insert_front(42);
+//	      dq1.insert_back(216);
+//
+//	      cout << dq1.peek_front() << " - 42" << endl;
+//	      cout << dq1.peek_back() << " - 216" << endl;
+//	      cout << dq1.size() << " - 2" << endl;
+//
+//	      Deque dq2(dq1);
+//	      Deque dq3;
+//	      dq3 = dq1;
+//
+//	      cout << dq1.remove_front() << " - 42" << endl;
+//	      cout << dq1.remove_back() << " - 216" << endl;
+//
+//	      cout << dq2.peek_front() << " - 42" << endl;
+//	      cout << dq2.peek_back() << " - 216" << endl;
+//
+//	      cout << dq3.peek_front() << " - 42" << endl;
+//	      cout << dq3.peek_back() << " - 216" << endl;
+//
 	return 0;
 }

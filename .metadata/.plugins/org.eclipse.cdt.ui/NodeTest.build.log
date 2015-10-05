@@ -1,0 +1,6 @@
+15:03:15 **** Incremental Build of configuration Debug for project NodeTest ****
+make all 
+make: Nothing to be done for `all'.
+
+15:03:16 Build Finished (took 64ms)
+

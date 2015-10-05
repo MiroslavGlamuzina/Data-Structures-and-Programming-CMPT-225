@@ -1,0 +1,11 @@
+#include "stdio.h"
+#include "iostream"
+
+using namespace std;
+
+int main() {
+	Node<T> *front;
+
+	std::cout << "test" << std::endl;
+	return 0;
+}

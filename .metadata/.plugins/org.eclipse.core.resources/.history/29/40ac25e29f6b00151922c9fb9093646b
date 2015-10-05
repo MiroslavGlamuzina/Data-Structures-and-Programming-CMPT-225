@@ -1,0 +1,11 @@
+#include "stdio.h"
+#include "iostream"
+using namespace std;
+
+int main() {
+
+	cout << "tst" << endl;
+
+	std::cout << "test" << std::end;
+	return 0;
+}

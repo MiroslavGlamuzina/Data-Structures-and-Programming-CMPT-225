@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+struct node {
+	int data;
+	node* next;
+};
+
+int main() {
+	node* n;
+	n = new node;
+	n->data = 1;
+	node* t;
+	t = n;
+
+	n= new node;
+	n->data =2;
+	t->next = n;
+
+	t=t->next;
+
+	std::cout << "test" << std::endl;
+	return 0;
+}
+

@@ -1,0 +1,17 @@
+#include "Deque.h"
+
+Node::Node() {
+//temp = new node();
+//head = new node();
+//curr = new node();
+
+	temp = NULL;
+	head = NULL;
+	curr = NULL;
+}
+
+
+void Node::AddNode(int data)
+{
+Node* n = new node;
+}

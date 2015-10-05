@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Deque.cpp \
 ../Main.cpp 
 
 OBJS += \
+./Deque.o \
 ./Main.o 
 
 CPP_DEPS += \
+./Deque.d \
 ./Main.d 
 
 

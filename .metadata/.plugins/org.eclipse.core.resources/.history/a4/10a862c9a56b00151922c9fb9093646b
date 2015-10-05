@@ -1,0 +1,8 @@
+#include "Deque.h"
+
+
+
+
+Node::Node(){
+temp = new node();
+}

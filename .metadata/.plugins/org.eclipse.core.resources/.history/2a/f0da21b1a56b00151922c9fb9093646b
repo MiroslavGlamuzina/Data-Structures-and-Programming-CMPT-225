@@ -1,0 +1,10 @@
+#include "Deque.h"
+
+
+Node(){
+
+}
+
+Node::Node(){
+
+}

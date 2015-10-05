@@ -1,0 +1,37 @@
+#include "Deque.h"
+
+Node::Node() {
+//temp = new node();
+//head = new node();
+//curr = new node();
+
+	temp = NULL;
+	head = NULL;
+	curr = NULL;
+}
+
+void Node::AddNode(int data) {
+	node* n = new node;
+	n->next = NULL;
+	n->data = data;
+
+	if (head != NULL) {
+		curr = head;
+		while (curr->next != NULL) {
+			curr = curr->next;
+		}
+		curr->next = n;
+	} else {
+		head = n;
+	}
+}
+
+void Node::deleteNode(int index) {
+node* delnode = NULL;
+temp = head;
+curr = head;
+while(curr!= NULL && curr->data !=delnode)
+{
+	}
+
+}

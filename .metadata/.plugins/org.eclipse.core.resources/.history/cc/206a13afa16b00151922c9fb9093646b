@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+
+
+int main() {
+	node* n = new node;
+	std::cout << "test" << std::endl;
+	return 0;
+}
+
+struct node{
+int data;
+node* next;
+};

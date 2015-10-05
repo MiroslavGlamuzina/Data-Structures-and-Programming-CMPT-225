@@ -1,0 +1,14 @@
+#include <iostream>
+stuct node;
+using namespace std;
+
+int main() {
+	node* n;
+	std::cout << "test" << std::endl;
+	return 0;
+}
+
+struct node{
+int data;
+node* next;
+};
