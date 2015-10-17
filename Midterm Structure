@@ -1,0 +1,59 @@
+##//50 marks 
+NOTES
+------
+Topics covering the first 4-5 weeks of class...
+These are to help students prepare for the midterm in CMPT 225 
+
+QUESTIONS
+-----------------------------------------------------------
+
+5 marks 
+---------
+for what values of C is :
+cn^2 >= 3n^2 +40n +2
+
+
+7 marks
+--------
+List the 7 complexity classes used/covered in this course (big O):
+
+
+5 Marks:
+---------
+Big O complexity of the methods of a stack ADT using a SINGLY LINKED LIST with two tpyes 
+
+5 Marks 
+--------
+Big O complexity of the methods of a stack ADT using a DOUBLY LINKED LIST with two tpyes 
+
+5 Marks
+-------
+Given two ordered lists, 
+a) 0 ... 127 
+b) 127 ... 0
+Using the Merge sort algorithm (to the extent used in class) will; 
+list a be completed in fewer steps?
+list b be completed in fewer steps?
+or will the completion time be identical?
+
+
+5 Marks
+--------
+class C{
+c();
+c(int i);
+c(const &c)
+}
+
+match the following with theyre constructors and point any errors if there are any
+{
+C foo();
+C foo2(foo)
+C foo3(3.223)
+C foo4 = foo3;
+}
+
+
+
+
+
